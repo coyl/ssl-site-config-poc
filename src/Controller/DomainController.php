@@ -21,7 +21,7 @@ class DomainController extends Controller
             $configs->createConfig('../assets/domain-config.conf', $domain, $filesPart);
             $configs->saveCertificate($chain, $filesPart, 'fullchain');
             $configs->saveCertificate($key, $filesPart, 'key');
-//            $this->render()
         }
+        return $this->render('index.html.twig');
     }
 }

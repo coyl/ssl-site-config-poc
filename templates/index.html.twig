@@ -1,9 +1,12 @@
-{% extends base %}
+{% extends "base.html.twig" %}
 {% block body %}
     <p>Загрузите файлы сертификаты и укажите имя домена</p>
     <form method="post" enctype="multipart/form-data">
         <input name="domain"><label for="domain">Название домена</label><br>
-        <input name="chain" type="file"><label for="chain">fullchain.pem</label><br>
-        <input name="key" type="file"><label for="key">privkey.pem</label><br>
+        <label for="chain">fullchain.pem</label><br>
+        <input name="chain" type="file"><br>
+        <label for="key">privkey.pem</label><br>
+        <input name="key" type="file"><br><br>
+        <input type="submit">
     </form>
 {% endblock %}
