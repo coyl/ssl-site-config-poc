@@ -40,4 +40,6 @@ RUN rm -rf ./var/cache/*
 
 RUN composer install
 
+RUN crontab ./docker_configs/crontab
+
 ENTRYPOINT ["/var/www/docker_configs/bootstrap.sh"]

@@ -24,6 +24,11 @@ class NginxReloadCommand extends ContainerAwareCommand
 
         $diff = array_diff($available, $enabled);
 
+        if (!count($diff)) {
+            $output->writeln('No new files found.');
+            return;
+        }
+
         foreach ($diff as $file) {
             copy($availDir.$file, $enabledDir.$file);
         }

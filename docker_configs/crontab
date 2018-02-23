@@ -1,0 +1,1 @@
+*/5 * * * * /var/www/bin/concole nginx:reload
