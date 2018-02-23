@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_domain_configure:
+    path: /domain/configure
+    controller: App\Controller\DomainController::configure
