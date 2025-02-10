@@ -1,24 +1,13 @@
-FROM php:7.1-fpm
+FROM php:8.2-fpm
 
 EXPOSE 80
 
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - \
-    && apt-get install -y --force-yes nodejs build-essential
-
-RUN apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
+RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
-        libpng12-dev \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-install -j$(nproc) iconv mcrypt
 
-RUN apt-get -yqq --force-yes install wget curl git zip libpq-dev \
+RUN apt-get -yqq --force-yes install wget curl zip libpq-dev \
     && docker-php-ext-install -j$(nproc) zip  pdo pdo_pgsql bcmath pcntl sockets
-
-RUN yes | pecl install xdebug \
-    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN apt-get -yqq --force-yes install nginx nano
 RUN rm -f /etc/nginx/sites-enabled/default
